@@ -24,4 +24,5 @@ fi
 sleep 1
 # using exec, the specified command becomes PID 1
 # runs the command without a shell. It can have advantages in term of signal handling and clean process termination
+echo "Database up and ready !\n" 
 exec mysqld
