@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo "\n=============================="
-echo "=== Database configuration ==="
-echo "==============================\n"
+echo "\n\033[2;34m==============================\033[0m"
+echo "\n\033[2;34m=== Database configuration ===\033[0m"
+echo "\n\033[2;34m==============================\033[0m\n"
 
 if [ -d "/var/lib/mysql/${SQL_DATABASE}" ]
 then 
