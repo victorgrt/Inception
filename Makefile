@@ -20,6 +20,7 @@ all: makedir build up
 makedir:
 	mkdir -p /home/vgoret/data/mariadb
 	mkdir -p /home/vgoret/data/wordpress
+	mkdir -p /home/vgoret/data/website
 # Target to build the Docker containers
 build:
 	$(COMPOSE) -f $(COMPOSE_FILE) build
@@ -40,7 +41,7 @@ clean:
 # Target to clean up all containers, images, networks, and volumes
 fclean: clean
 	@sudo docker system prune -af
-	@sudo rm -rf ~/data/mariadb ~/data/wordpress
+	@sudo rm -rf ~/data/mariadb ~/data/wordpress ~/data/website
 	@echo "All images and containers are cleared."
 
 # Target to list running containers

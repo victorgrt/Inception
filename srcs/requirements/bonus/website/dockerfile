@@ -1,0 +1,8 @@
+FROM debian:bullseye
+
+RUN mkdir /data
+COPY sources/* /data/
+COPY tools/copy.sh /etc/
+
+WORKDIR /var/www/bonus.vgoret.42.fr/
+ENTRYPOINT ["sh", "/etc/copy.sh"]

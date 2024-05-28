@@ -24,11 +24,13 @@ services:
       - inception
     depends_on:
       - wordpress
+      - website
     build :
       context: requirements/nginx
       dockerfile: dockerfile
     volumes :
       - wordpress:/var/www/html
+      - website:/var/www/bonus.vgoret.42.fr
     env_file: 
       - .env
     ports:
@@ -53,6 +55,18 @@ services:
     expose:
       - "9000"
 
+  website:
+    container_name: website
+    image : website
+    build:
+      context: requirements/bonus/website/
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/www/bonus.vgoret42.fr
+    networks :
+      - inception
+
 volumes:
   wordpress:
     driver: local
@@ -65,6 +79,12 @@ volumes:
     driver_opts:
       type: none
       device: '/home/vgoret/data/mariadb'
+      o: bind
+  website:
+    driver: local
+    driver_opts:
+      type: none
+      device: '/home/vgoret/data/website'
       o: bind
 
 networks:
