@@ -16,7 +16,8 @@ RUN apt-get install -y php7.4\
     php-common\
     php-cgi\
     php-cli\
-    mariadb-client
+    mariadb-client\
+    unzip
 
 #TO HAVE WORDPRESS IN DIRECTORY FORM
 RUN wget http://fr.wordpress.org/wordpress-6.2.2-fr_FR.tar.gz -P /var/www
@@ -33,6 +34,11 @@ COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY tools/wp-cli_autoconfig.sh /usr/local/bin/wp-cli_autoconfig.sh
 
 RUN chmod +x /usr/local/bin/wp-cli_autoconfig.sh
+
+#MANAGE TEMPLATE
+COPY conf/retrogeek.0.7.zip /var/www/html/wp-content/themes/retrogeek.0.7.zip
+RUN unzip /var/www/html/wp-content/themes/retrogeek.0.7.zip -d /var/www/html/wp-content/themes/
+RUN rm /var/www/html/wp-content/themes/retrogeek.0.7.zip
 
 EXPOSE 9000
 
