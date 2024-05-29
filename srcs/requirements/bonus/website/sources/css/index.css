@@ -111,12 +111,11 @@ body{
     margin: 1em;
 }
 
-/* .welcome_asset img {
+.welcome_asset img {
     border-radius: 25%;
     margin-left: 0;
     width: 30%;
-} */
-
+}
 
 #project {
     display: flex;
