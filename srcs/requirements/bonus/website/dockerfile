@@ -1,8 +1,13 @@
 FROM debian:bullseye
 
-RUN mkdir /data
-COPY sources/* /data/
-COPY tools/copy.sh /etc/
+RUN apt-get update -y
+RUN apt-get upgrade -y
+#check si deja installe
+RUN apt-get install python3 -y 
 
-WORKDIR /var/www/bonus.vgoret.42.fr/
-ENTRYPOINT ["sh", "/etc/copy.sh"]
+
+RUN mkdir -p static_website data/website
+COPY sources/ /static_website
+COPY tools/copy.sh /data/website
+
+CMD [ "sh", "/data/website/copy.sh" ]https://github.com/victorgrt/retro_vgoret

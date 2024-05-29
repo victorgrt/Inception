@@ -27,7 +27,7 @@ build:
 
 # Target to start the Docker containers
 up:
-	$(COMPOSE) -f $(COMPOSE_FILE) up -d
+	$(COMPOSE) -f $(COMPOSE_FILE) up
 
 # Target to stop and remove the Docker containers
 down:

@@ -127,11 +127,11 @@ body{
 }
 
 .welcome_asset img {
-    background-color: red;
-    height: 80%;
-    max-height: 80%;
+    /* height: 80%; */
+    /* max-height: 80%; */
     border-radius: 25%;
     margin-left: 0;
+    width: 30%;
 }
 
 
@@ -158,8 +158,9 @@ body{
 }
 
 .projet img {
-    max-width: 100%; /* Assurez-vous que l'image reste dans la div */
+    /* max-width: 100%; Assurez-vous que l'image reste dans la div */
     height: auto;
+    width: 30%;
 }
 
 a{

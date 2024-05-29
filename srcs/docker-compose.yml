@@ -30,7 +30,7 @@ services:
       dockerfile: dockerfile
     volumes :
       - wordpress:/var/www/html
-      - website:/var/www/bonus.vgoret.42.fr
+      # - website:/data/website
     env_file: 
       - .env
     ports:
@@ -59,13 +59,14 @@ services:
     container_name: website
     image : website
     build:
-      context: requirements/bonus/website/
+      context: requirements/bonus/website
     ports:
       - "8000:8000"
-    volumes:
-      - /var/www/bonus.vgoret42.fr
+    # volumes:
+      # - website:/data/website
     networks :
       - inception
+    restart: on-failure
 
 volumes:
   wordpress:
@@ -80,12 +81,12 @@ volumes:
       type: none
       device: '/home/vgoret/data/mariadb'
       o: bind
-  website:
-    driver: local
-    driver_opts:
-      type: none
-      device: '/home/vgoret/data/website'
-      o: bind
+  # website:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: '/home/vgoret/data/website'
+  #     o: bind
 
 networks:
   inception:
