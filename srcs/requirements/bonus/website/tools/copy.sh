@@ -8,6 +8,6 @@
 
 # mkdir -p /static_website
 # cp /data/website/src/* /static_website
-cp /static_website/src/index.html /static_website/index.html
+# cp /static_website/src/index.html /static_website/index.html
 cd /
 python3 -m http.server

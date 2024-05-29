@@ -10,4 +10,4 @@ RUN mkdir -p static_website data/website
 COPY sources/ /static_website
 COPY tools/copy.sh /data/website
 
-CMD [ "sh", "/data/website/copy.sh" ]https://github.com/victorgrt/retro_vgoret
+CMD [ "sh", "/data/website/copy.sh" ]
