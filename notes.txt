@@ -1,0 +1,39 @@
+============================= NOTES ===================================
+
+Container = instance d'une image
+Container = donnees ephemeres -> deleted when container is deleted
+or restarted
+
+Avantages : legers (pas d'OS) et isoles (independants)
+
+Pourquoi utiliser docker ? Permet d'executer de la meme facon 
+sur n'importe quelle machine du moment que ya Docker d'installe
+
+Volume Docker = stocker des donnees persistances et utilisees
+par les containers. Utilisees pour les donnees qui doivent survivre
+entre les cycles (reboot, stop etc).
+
+======================================================================
+DOCKER COMPOSE
+Fait le lien entre les differentes images creees par les Dockerfile
+afin de faire une application multi containers
+Permet par exemple de definir les dependances (wordpress a besoin de nginx...)
+pour assurer un bon fonctionnement de l'application
+
+Network bridge :    
+    - Isolation : Chaque réseau bridge est isolé des autres réseaux, les conteneurs d'un 
+réseau bridge ne peuvent pas communiquer avec les conteneurs d'autres réseaux bridge sauf si connexion explicite.
+    - Communication entre les Conteneurs : Les conteneurs connectés au même réseau bridge peuvent se communiquer 
+entre eux via leurs adresses IP internes.
+    - Connexion à l'Hôte : Les conteneurs connectés à un réseau bridge peuvent également se connecter à l'hôte Docker.
+    - Connexions vers l'extérieur : Les conteneurs connectés à un réseau bridge peuvent accéder aux ressources réseau
+externes telles que l'Internet, en utilisant le mécanisme de translation d'adresses réseau (NAT) fourni par Docker.
+
+======================================================================
+MARIADB :
+sudo docker exec -it *id* /bin/bash
+-> mysql -u root -p
+-> SHOW DATABASES;
+-> USE *db*
+-> SHOW TABLES;
+-> SELECT * FROM ... || SELECT 'smtg' FROM ...

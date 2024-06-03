@@ -3,15 +3,15 @@ version: '3'
 services:
   mariadb:
     container_name: mariadb
-    image : mariadb
-    networks:
+    image : mariadb #image officielle = mariadb
+    networks: #connecte au reseau inception
       - inception
-    build:
+    build: #construction en fonction du dockerfile situe a ./requirements/mariadb 
       context: ./requirements/mariadb
       dockerfile: dockerfile
-    env_file:
+    env_file: #utiliser le .env pour les variables d'environnement
       - .env
-    volumes:
+    volumes: #stocker les donnes persistantes a /var/lib/mysql
       - mariadb:/var/lib/mysql
     expose:
       - "3306"
@@ -19,18 +19,17 @@ services:
   
   nginx:
     container_name: nginx
-    image : nginx
-    networks :
+    image : nginx #image officielle = nginx
+    networks : #connecter ce container au reseau inception
       - inception
-    depends_on:
+    depends_on: #depends des services wordpress et website
       - wordpress
       - website
-    build :
+    build : #construction a partir du dockerfile situe a requirements/nginx 
       context: requirements/nginx
       dockerfile: dockerfile
-    volumes :
+    volumes : #montage du volume a /var/www/html
       - wordpress:/var/www/html
-      # - website:/data/website
     env_file: 
       - .env
     ports:
@@ -39,17 +38,17 @@ services:
 
   wordpress:
     container_name: wordpress
-    image: wordpress
-    networks:
+    image: wordpress #image officielle = wordpress
+    networks: #fait partie du reaseau inception
       - inception
-    build:
+    build: #construction a partir du dockerfile situe a ./requirements/wordpress     
       context: ./requirements/wordpress
       dockerfile: dockerfile
-    env_file:
+    env_file: #utiliser le .env pour les variables d'environnement
       - .env
-    volumes:
+    volumes: #montage du volume a /var/www/html
       - wordpress:/var/www/html
-    depends_on :
+    depends_on : #depends de mariadb pour la base de donnee -> user, root...
       - mariadb
     restart: on-failure
     expose:
@@ -62,32 +61,26 @@ services:
       context: requirements/bonus/website
     ports:
       - "8000:8000"
-    # volumes:
-      # - website:/data/website
     networks :
       - inception
     restart: on-failure
 
+#DEFINITION DES VOLUMES
 volumes:
   wordpress:
     driver: local
     driver_opts:
       type: none
-      device: '/home/vgoret/data/wordpress'
+      device: '/home/vgoret/data/wordpress' #stockage des donnees
       o: bind
   mariadb:
     driver: local
     driver_opts:
       type: none
-      device: '/home/vgoret/data/mariadb'
+      device: '/home/vgoret/data/mariadb' #stockage des donnees
       o: bind
-  # website:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: '/home/vgoret/data/website'
-  #     o: bind
 
+#Permet la communication entre les containers faisant partie du network de containers "inception"
 networks:
   inception:
     driver: bridge
