@@ -4,4 +4,5 @@ user = mysql
 pid-file = /run/mysqld/mysqld.pid
 socket = /run/mysqld/mysqld.sock
 port = 3306
+#ecoute sur toutes les adresses disponibles
 bind_address = 0.0.0.0

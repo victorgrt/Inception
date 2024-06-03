@@ -18,11 +18,17 @@ RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/ngin
 #STOCKAGE DES FICHIERS DE CONF DE NGINX
 RUN mkdir -p /var/run/nginx
 
+#COPIE DU FICHIER DE CONF DANS LE CONTAINER
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN chmod 755 /var/www/html
+
+#PROPRIETAIRE DU DOSSIER = www-data
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 443
 
+#-g pour donner des directives de conf en ligne de commande si necessaire
+#daemon off -> pour que nginx soit en foreground dans le container
+#(si c'etait en arriere plam le container s'arrete apres le demarage car docker s'attend a ce que le processus reste actif)
 CMD [ "nginx", "-g", "daemon off;" ]
