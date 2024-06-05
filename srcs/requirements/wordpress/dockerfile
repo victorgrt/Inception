@@ -38,7 +38,7 @@ RUN chmod +x /usr/local/bin/wp-cli_autoconfig.sh
 
 #MANAGE TEMPLATE
 COPY conf/retrogeek.0.7.zip /var/www/html/wp-content/themes/retrogeek.0.7.zip
-RUN unzip /var/www/html/wp-content/themes/retrogeek.0.7.zip -d /var/www/html/wp-content/themes/
+RUN unzip /var/www/html/wp-content/themes/retrogeek.0.7.zip -d /var/www/html/wp-content/themes/ 
 RUN rm /var/www/html/wp-content/themes/retrogeek.0.7.zip
 
 EXPOSE 9000
